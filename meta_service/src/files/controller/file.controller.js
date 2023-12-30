@@ -91,12 +91,10 @@ async function checkFileAccess(req, res) {
 
 
 async function getAllFileVersions(req, res) {
-  const hash = req.params.hash;
-
+  const { hash } = req.params;
   try {
     // Call the function to get all file versions
     const versions = await getAllFileVersionsByHash(hash);
-
     res.status(200).json(versions);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
@@ -104,12 +102,11 @@ async function getAllFileVersions(req, res) {
 }
 
 async function fileToSetCurrent(req, res) {
-  const versionId = req.params.versionId;
+  const { versionId } = req.params;
 
   try {
     // Call the function to set the current version
     const result = await setCurrentVersion(versionId);
-
     res.status(200).json(result);
   } catch (error) {
     res.status(404).json({ error: error.message || 'File not found' });
@@ -121,9 +118,7 @@ async function getUserFiles(req, res) {
     let time = Date.now();
     const userId = req.user.id
     const prefixes = await FileMetadata.distinct('prefix', { userId });
-
     const folderStructure = {};
-
     for (const prefix of prefixes) {
       const files = await FileMetadata.find({ userId, prefix });
       folderStructure[prefix] = files.map(file => ({
@@ -151,18 +146,15 @@ async function getUserFilesByType(req, res) {
   try {
     const userId = req.user.id;
     const prefixes = await FileMetadata.distinct('prefix', { userId });
-
     const fileStructure = {};
 
     for (const prefix of prefixes) {
       const files = await FileMetadata.find({ userId, prefix });
-
       for (const file of files) {
         const fileType = file.type || 'Other'; // Use 'Other' if type is undefined
         if (!fileStructure[fileType]) {
           fileStructure[fileType] = [];
         }
-
         fileStructure[fileType].push({
           filename: file.filename,
           prefix: file.prefix,
@@ -188,7 +180,6 @@ async function getStorageUsageByUser(req, res) {
   try {
     const userId = req.user.id;
     const prefixes = await FileMetadata.distinct('prefix', { userId });
-
     const storageUsage = {};
     // for total usage across all the folders.
     let totalUsage = 0;

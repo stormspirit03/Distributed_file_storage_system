@@ -8,6 +8,14 @@ let response1;
 let response2;
 
 async function loadBalancer(req, res) {
+  /**
+   * Balances the load between two database services and returns the URL of the chosen service.
+   * 
+   * @param {Object} req - The request object containing information about the incoming request.
+   * @param {Object} res - The response object used to send the response back to the client.
+   * @returns {string} The URL of the chosen database service.
+   * @throws {Error} If there is an error during the execution of the function.
+   */
   let time = Date.now();
   try {
     if (req.headers['x-api-key'] === process.env.API_KEY_META_SERVICE) {
@@ -53,6 +61,19 @@ async function loadBalancer(req, res) {
   }
 }
 
+/**
+ * Determines the best database service to use based on the responses from two database services.
+ * Factors considered include whether the services are free and the total payload of each service.
+ * If both services are not free, it chooses the one with the lower total payload.
+ * If one service is free and the other is not, it chooses the free service.
+ * If both services are free or if there is an error, it randomly selects one of the services.
+ *
+ * @param {object} response1 - The response from the first database service.
+ *                            Should have properties 'free' (boolean) and 'totalPayload' (number).
+ * @param {object} response2 - The response from the second database service.
+ *                            Should have properties 'free' (boolean) and 'totalPayload' (number).
+ * @returns {string} The URL of the best database service to use based on the responses.
+ */
 function chooseBestService(response1, response2) {
   try {
     // Check if both responses are not free
@@ -60,7 +81,6 @@ function chooseBestService(response1, response2) {
       // Choose the one with lower totalPayload
       return response1.totalPayload < response2.totalPayload ? db_service1_url : db_service2_url;
     }
-
     // Check if response1 is free
     if (response1.free && !response2.free) {
       return db_service1_url;

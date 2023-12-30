@@ -8,11 +8,11 @@ const fileSchema = new mongoose.Schema({
   type: { type: String, required: true },
   size: { type: Number, required: true },
   access: { type: [String], enum: ['private', 'shared', 'public'], required: true },
-  sharedAccessIds:{type:[String], default:[]},
-  version: { type: String, enum: ['current','other'], default: 'current' },
-  versionId:{type: String, required: true},
-  hash:{type: String, required: true,default: Date.now()},
-  service:{type: String, enum: ['9100','9101','9200','9201']},
+  sharedAccessIds: { type: [String], default: [] },
+  version: { type: String, enum: ['current', 'other'], default: 'current' },
+  versionId: { type: String, required: true },
+  hash: { type: String, required: true, default: Date.now() },
+  service: { type: String, enum: ['9100', '9101', '9200', '9201'] },
   url: { type: String, required: true },
 }, { timestamps: true });
 
