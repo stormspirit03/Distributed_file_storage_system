@@ -12,7 +12,7 @@ async function savefilemetadata(metadata) {
     });
     console.log(response.data);
   } catch (error) {
-    throw error.message? error.message:error;
+    throw error.message ? error.message : error;
   }
 }
 

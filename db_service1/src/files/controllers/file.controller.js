@@ -1,7 +1,6 @@
 const FileMetadata = require("../models/files.model");
 const fs = require('fs/promises');
 const Path = require('path');
-
 const metaService = require('../../meta_service/meta_service.controller');
 const createHash = require("../../util/createHash.util");
 const { checkFileAccess } = require("../../meta_service/checkFileAccess");
@@ -9,10 +8,8 @@ const { checkFileAccess } = require("../../meta_service/checkFileAccess");
 
 async function saveFileMetadata(req, res) {
   try {
-
     const userId = req.user.id;
     let { sharedAccessIds } = req.file;
-    // console.log(req.file);
     const { filename, type, path, uploadDate, access, size, prefix, service, version, } = req.file;
     if (access != 'shared') sharedAccessIds = [];
     const hash = await createHash(prefix, userId, filename);
@@ -31,18 +28,14 @@ async function saveFileMetadata(req, res) {
       version,
       versionId: Date.now(),
       url: `http://localhost:${service}/file/download/:${encodeURI(path)}/:${hash}`
-
     }
 
     await metaService.savefilemetadata(fileMetadata);
     fileMetadata['encoded-path'] = encodeURIComponent(path);
     res.status(201).send(fileMetadata);
-
-    // await unlinkFile( path); // unlink from updated path.
   } catch (error) {
     console.log(error);
     await unlinkFile(req.file.path); // unlink from updated path.
-    console.log(error);
     res.status(500).send('failed to upload and save the file metadata')
   }
 }

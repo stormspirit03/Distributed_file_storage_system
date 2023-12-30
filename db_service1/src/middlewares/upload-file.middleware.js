@@ -6,9 +6,6 @@ const destination = path.resolve(__dirname, '..//..//z_database');
 let uploadedFilename;
 
 
-
-
-
 const storage = multer.diskStorage({
   destination,
   filename: function (req, file, cb) {
@@ -19,7 +16,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-s
 function uploadFile(req, res, next) {
   try {
     upload.single('file')(req, res, function (err) {
