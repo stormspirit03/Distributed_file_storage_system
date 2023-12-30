@@ -3,7 +3,7 @@ require('dotenv').config();
 
 async function savefilemetadata(metadata) {
   try {
-    console.log('metadata: ',metadata);
+    console.log('metadata: ', metadata);
     const meta_service_uri = `${process.env.META_SERVICE_URI}/file/save-metadata`;
     const response = await axios.post(meta_service_uri, metadata, {
       headers: {
@@ -14,7 +14,7 @@ async function savefilemetadata(metadata) {
     console.log(response.data);
   } catch (error) {
     console.log(error);
-    throw error.message? error.message:error;
+    throw error.message ? error.message : error;
   }
 }
 
