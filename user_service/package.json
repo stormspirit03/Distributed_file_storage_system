@@ -1,0 +1,23 @@
+{
+  "name": "user_service",
+  "version": "1.0.0",
+  "description": "this is service for raw storage files per user/tenant.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Raviraj Gardi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2",
+    "redis": "^4.6.11",
+    "util": "^0.12.5"
+  }
+}
