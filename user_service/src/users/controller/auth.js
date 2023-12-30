@@ -1,24 +1,14 @@
-var bcrypt   = require('bcryptjs');
+var bcrypt = require('bcryptjs');
 const Jwt = require('jsonwebtoken');
 const User = require('../models/users');
-// const createTenantDatabaseFolder = require('../../files/controller/files');
-const selectDbServiceRandomly = require('../../util/dbServiceSelector');
 const createJwtToken = require('../../middlewares/jwt/createJwt');
 
 // const redisClient = require('../../db/redis');
 
-
-
-
-
 const userRegister = async (req, res) => {
-   try {
-    // select randomly in which DBservice user's storage-space to create.
-        // let dbServiceDetails = selectDbServiceRandomly();
-        // let dbServiceAddress = dbServiceDetails.dbServiceAddress;
-        // let dbServiceNumber =  dbServiceDetails.serviceNumber;
+    try {
         const {
-            fullName, 
+            fullName,
             email,
         } = req.body;
         const password = bcrypt.hashSync(req.body.password, 8);
@@ -29,25 +19,21 @@ const userRegister = async (req, res) => {
             password,
         });
         await user.save();
-
-        const userId = user._id.toString(); // mongo generates object and not simple string.
-        // create user's storage-space.
-        // await createTenantDatabaseFolder(userId, dbServiceAddress); 
         res.status(200).send('Registration successful. ');
-   } catch (error) {
-        console.log('User registration failed.',error);
+    } catch (error) {
+        console.log('User registration failed.', error);
         if (error.code === 11000) {
             res.status(400).json({ error: 'Email already exists.' });
-          } else {
-            res.status(500).send(error.message)         
-            }
+        } else {
+            res.status(500).send(error.message)
+        }
     }
 };
 
 const userLogin = async (req, res) => {
-   try {
-        const {email, password} = req.body;
-        const user = await User.findOne({email});
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
         passwordIsValid = bcrypt.compareSync(password, user.password);
         if (!passwordIsValid) {
             return res.status(401).send({
@@ -68,13 +54,13 @@ const userLogin = async (req, res) => {
         }
 
         return res.status(200).send(returnObject);
-   } catch (error) {
+    } catch (error) {
         console.log("login error", error);
         res.status(500).send(error);
-        
-   }
+
+    }
 }
 module.exports = {
-        userRegister,
-        userLogin
+    userRegister,
+    userLogin
 };

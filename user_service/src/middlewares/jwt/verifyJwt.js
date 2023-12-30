@@ -3,7 +3,6 @@ const User = require('../../users/models/users.js');
 
 async function verifyJwt(req, res, next){
    try {
-        // console.log(' inside verify jwt');
         if (req.headers && req.headers.authorization) { 
             const token = req.headers.authorization.split(' ')[1] // remove Bearer keyword from auth token
             Jwt.verify(token, process.env.API_SECRET, async (err, decodedValue) => {
@@ -17,7 +16,6 @@ async function verifyJwt(req, res, next){
                                 fullName: user.fullName,
                                 email: user.email,
                                 role: user.role,
-                                dbServiceNumber: user.dbServiceNumber,
                                 created: user.created,
                                 updated: user.updated,
                                 // Add other fields as needed, excluding the 'password'
@@ -27,8 +25,6 @@ async function verifyJwt(req, res, next){
                        
                         next(); 
                     } else {
-                        console.log(`inside error`);
-                        console.log(err);
                         req.user = undefined;
                         res.status(500).send(err);
                     

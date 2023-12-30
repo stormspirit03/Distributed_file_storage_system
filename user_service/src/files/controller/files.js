@@ -1,11 +1,9 @@
-const axios = require ('axios');
+const axios = require('axios');
 require('dotenv').config();
 
 
 
-
-
-async function createTenantDatabaseFolder(tenantId, dbServiceAddress){
+async function createTenantDatabaseFolder(tenantId, dbServiceAddress) {
     try {
         const apiUrl = dbServiceAddress;
         const data = { tenantId };
@@ -13,7 +11,7 @@ async function createTenantDatabaseFolder(tenantId, dbServiceAddress){
         console.log(response.data);
     } catch (error) {
         console.log(error);
-        throw(`failed to create DB for user ${tenantId} `);
+        throw (`failed to create DB for user ${tenantId} `);
     }
 }
 
