@@ -54,7 +54,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+  <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -75,10 +75,10 @@
 ## About 
 The high level functionality of system is to be able to manage folders, store and download large size files, manage version control explicitly and file sharing.
 
-In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers.
+In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers. <br><br>
+    ![Distributed storage system drawio](https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/b8fe2330-da2c-491a-8cd6-256e81bd46e3)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
+## Components
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
