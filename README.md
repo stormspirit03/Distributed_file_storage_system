@@ -76,37 +76,95 @@
 The high level functionality of system is to be able to manage folders, store and download large size files, manage version control explicitly and file sharing.
 
 In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers. <br><br>
-![Distributed storage system drawio (2)](https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921)
+
+<p align="center">
+  <img src="https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921" alt="Distributed storage system drawio (2)">
+</p>
+
 
 ## Components
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+1) <b>User Service:</b> This is responsible for user authentication.<br>
+2) <b>Meta Server/Load Balancer:</b> This server stores file metadata and also acts as a load balancer.<br>
+3) <b>Storage Servers:</b> These are the servers where the files are stored. They also handle synchronous replication for higher data durability.<br>
+4) <b>Central Queue Server:</b> This server decouples the process of storing file metadata from the rest of the system.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+### Flow:
+1) Users are authenticated through the User Service. 
+2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the frontend to the appropriate Storage Server based on the current load. 
+3) The frontend then directly uploads the file to the assigned Storage Server. 
+4) The files are replicated synchronously across the servers for higher durability. 
+5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
+Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+|                           |                           |                           |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+| [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](https://nodejs.org/) | [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/) | [![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)](https://redis.io/) |
+| [![Multer](https://img.shields.io/badge/Multer-47A248)](https://www.npmjs.com/package/multer) | [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?logo=rabbitmq&logoColor=white)](https://www.rabbitmq.com/) | [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) |
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+
+<h2>API Details</h2>
+
+<table>
+    <tr>
+        <th>API</th>
+        <th>Endpoint</th>
+        <th>Input</th>
+        <th>Output</th>
+    </tr>
+    <tr>
+        <td>Register</td>
+        <td>POST http://localhost:8000/user/register</td>
+        <td>
+            <pre>
+{
+    "fullName": "Raviraj Gardi",
+    "email": "Raviraj03@gmail25.com",
+    "password": "12345678"
+}
+            </pre>
+        </td>
+        <td>201 OK</td>
+    </tr>
+    <tr>
+        <td>Login</td>
+        <td>Not specified in the provided JSON</td>
+        <td>No specific details provided in the JSON.</td>
+        <td>
+          <pre>
+{
+    "user": {
+        "userId": "658c39824bf69a0ae39d4e1e",
+        "email": "raviraj03@gmail28.com",
+        "fullName": "Raviraj Gardi"
+    },
+    "message": "Login Successful",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV..."
+}
+          </pre>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
 
 
 <!-- GETTING STARTED -->
