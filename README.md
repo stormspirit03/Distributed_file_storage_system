@@ -76,7 +76,7 @@
 The high level functionality of system is to be able to manage folders, store and download large size files, manage version control explicitly and file sharing.
 
 In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers. <br><br>
-    ![Distributed storage system drawio](https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/b8fe2330-da2c-491a-8cd6-256e81bd46e3)
+![Distributed storage system drawio (2)](https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921)
 
 ## Components
 Here's why:
