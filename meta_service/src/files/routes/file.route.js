@@ -11,6 +11,6 @@ router.get('/all', verifyJwt, fileController.getUserFiles);
 router.get('/by-type', verifyJwt, fileController.getUserFilesByType);
 router.get('/storage-usage', verifyJwt, fileController.getStorageUsageByUser);
 router.get('/all-versions/:hash', verifyJwt, checkFileAccess, fileController.getAllFileVersions);
-router.get('/set-current/:hash/:versionId', verifyJwt, checkFileAccess, fileController.fileToSetCurrent);
+router.put('/set-current/:hash/:versionId', verifyJwt, checkFileAccess, fileController.fileToSetCurrent);
 
 module.exports = router;
