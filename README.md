@@ -70,7 +70,7 @@ In architecture point of view the primary goal of this system is to streamline d
   <img src="https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921" alt="Distributed storage system drawio (2)">
 </p>
 
-
+<br><br>
 ## Components
 1) <b>User Service:</b> This is responsible for user authentication.<br>
 2) <b>Meta Server/Load Balancer:</b> This server stores file metadata and also acts as a load balancer.<br>
@@ -88,7 +88,7 @@ In architecture point of view the primary goal of this system is to streamline d
 4) The files are replicated synchronously across the servers for higher durability. 
 5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
 Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
-
+<br><br>
 ## Built With
 
 |                           |                           |                           |
@@ -395,11 +395,11 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </body>
 </html>
 
-
+<br><br>
 ## Sequence_diagram
 <a href="https://drive.google.com/file/d/1G3ViS_Al7HYg2Qsg1ajoU1aDROXGa0CI/view?usp=sharing" target="_blank">API Sequence Diagram</a> Dont shy away from zooming it.
 
-
+<br><br>
 ## Installation
 ### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 1. Create a Dockerfile on the same level as the 'src' directory.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
@@ -457,7 +457,7 @@ Mail me at Raviraj03.py@gmail.com ( I respond the mails )
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thanks to Dhaval Trivedi for his valueable feedback and guidance  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
+Thanks to Dhaval Trivedi for his valueable feedback and guidance.  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
 .  <br> <br>
 Thanks to Vedant Rathore for his timely support and guidance. 
 
