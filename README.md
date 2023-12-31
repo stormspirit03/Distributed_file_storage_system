@@ -131,7 +131,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
     </tr>
     <tr>
         <td>Register</td>
-        <td>POST http://localhost:8000/user/register</td>
+        <td>POST http://user_service:8000/user/register</td>
         <td>
             <pre>
 {
@@ -141,12 +141,15 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 }
             </pre>
         </td>
-        <td>201 OK</td>
+        <td><pre><center>201 OK</center></pre></td>
     </tr>
     <tr>
         <td>Login</td>
-        <td>Not specified in the provided JSON</td>
-        <td>No specific details provided in the JSON.</td>
+        <td>POST http://user_service:8000/user/login</td>
+        <td><pre>{
+    "email":"Raviraj03@gmail28.com",
+    "password":"12345678"
+} </pre> </td>
         <td>
           <pre>
 {
