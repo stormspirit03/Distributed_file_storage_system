@@ -426,17 +426,17 @@ This is an example of how to list things you need to use the software and how to
 #### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 1. Create a Dockerfile on the same level as the 'src' directory.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
 2. Create a custom network for your project. Ensure all microservices, including databases, are on the same network for communication.
-3. Ensure all requirements are mentioned correctly.
-Build the Docker image using the following command:
+3. Ensure all requirements are mentioned correctly. <br>
+   Build the Docker image using the following command:
 ```sh
    docker build -t meta-service /D:/dev/capstone/meta_service
    ```
-where the first part is the name, and the second part is the absolute address.
-4.Run the container using the following command:
+
+4. Run the container using the following command:
 ```sh
    docker run -d --network=my-custom-network --name meta-service -p 10000:10000 meta-service
    ```
-where '--name' is the name of the container. Make sure to forward the port if you want to use it locally.
+
 5. To know the IP address, use the following command:
 ```sh
    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' meta-service
