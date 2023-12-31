@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .collapsible {
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+
+    .active, .collapsible:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<h2>USER API Details</h2>
+
+<button class="collapsible" onclick="toggleContent('register')">Register</button>
+<div class="content" id="register">
+  <table>
+    <tr>
+      <th>API</th>
+      <th>Endpoint</th>
+      <th>Input</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>Register</td>
+      <td>POST http://user_service:8000/user/register</td>
+      <td><pre>{ "fullName": "Raviraj Gardi", "email": "Raviraj03@gmail25.com", "password": "12345678" }</pre></td>
+      <td><pre><center>201 OK</center></pre></td>
+    </tr>
+  </table>
+</div>
+
+<button class="collapsible" onclick="toggleContent('login')">Login</button>
+<div class="content" id="login">
+  <table>
+    <!-- ... (similar structure for other rows) ... -->
+  </table>
+</div>
+
+<script>
+  function toggleContent(id) {
+    var content = document.getElementById(id);
+    content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+  }
+</script>
+
+</body>
+</html>
