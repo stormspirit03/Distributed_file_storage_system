@@ -122,7 +122,8 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 
 <h2>API Details</h2>
 
-<table>
+
+<table >
     <tr>
         <th>API</th>
         <th>Endpoint</th>
@@ -159,12 +160,80 @@ Additionally, read operations are performed on the replicas. Since replicas are 
         "fullName": "Raviraj Gardi"
     },
     "message": "Login Successful",
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV..."
+    "accessToken": "eyJhbGciOiJIUzI1NiI6IkpXV..."
 }
           </pre>
         </td>
     </tr>
+    <tr>
+        <td>File Upload</td>
+        <td>POST http://localhost:9200/file/upload</td>
+        <td>
+            <pre>
+{
+    "file": "/C:/User/Pictures/b6b894.jpg",
+    "prefix": "//parent//user//b//",
+    "access": "public",
+    "version": "other",
+    "sharedAccessIds": "[]",
+    "headers": {
+        "x-file-size": "614743040",
+        "Authorization": "Bearer eyJhbci9..."
+    }
+}
+            </pre>
+        </td>
+        <td>
+            <pre>
+{
+    "filename": "b6b894.jpg",
+    "prefix": "//parent//user//b//",
+    "userId": "658c39824bf69a0ae39d4e1e",
+    "path": "/D:/dev/capstone..b6b894.jpg",
+    "type": ".jpg",
+    "size": 183991,
+    "service": "9200",
+    "access": "public",
+    "sharedAccessIds": [],
+    "hash": "0c...10fd48",
+    "version": "other",
+    "versionId": 1704..24251,
+    "url": "http://localhost:9200/file/...fe1cc07191468d610fd48",
+    "encoded-path": "%2FD%3A%2..cd040baf88b6b894.jpg"
+}
+            </pre>
+        </td>
+    </tr>
+
+<tr>
+  <td>Download File</td>
+  <td>GET http://localhost:9200/file/download/:filepath/:filehash/:versionId</td>
+  <td>
+    <pre>
+ {
+    URL Parameters:
+    {
+        "filepath": "/D:/dev/capst..7760bfb6e8149bcd040baf88b6b894.jpg",
+            "filehash": "0ccfec98ebffe1cc07191468d610fd48",
+                "versionId": "1703883106134"
+    }
+    Headers:
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+}
+    </pre>  
+  </td>
+  <td>
+    <pre>
+200 OK
+    </pre>
+  </td>
+</tr>
+
+
 </table>
+
 
 </body>
 </html>
