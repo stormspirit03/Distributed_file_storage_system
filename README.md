@@ -409,6 +409,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 
 
 ## Sequence diagram 
+[API Sequence Diagram](https://drive.google.com/file/d/1zYEriqiF_jitIvnO-W9yEFtaI3qSF8Gv/view?usp=sharing)  Dont shy away from zooming it.
 
 
 ## Installation
