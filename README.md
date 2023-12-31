@@ -424,7 +424,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 #### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-1. Create a Dockerfile on the same level as the 'src' directory.
+1. Create a Dockerfile on the same level as the 'src' directory.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
 2. Create a custom network for your project. Ensure all microservices, including databases, are on the same network for communication.
 3. Ensure all requirements are mentioned correctly.
 Build the Docker image using the following command:
