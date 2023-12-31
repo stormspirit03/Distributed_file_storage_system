@@ -444,6 +444,9 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Postman_collection
+[![Postman Collection](https://img.shields.io/badge/Postman-Download-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/airtribe%20capstone.postman_collection.json)
+<br>
+I have shared the Postman collection. Just import it inside Postman and you are good to go.
 <!-- CONTACT -->
 ## Contact
 
