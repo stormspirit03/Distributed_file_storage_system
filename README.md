@@ -53,6 +53,7 @@
     <li><a href="#user-api-details">User-api details</a></li>
     <li><a href="#sequence_diagram">Sequence_diagram </a></li>
     <li><a href="#installation">Installation</a></li>
+    <li><a href="#postman_collection">Postman_collection</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -442,7 +443,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+## Postman_collection
 <!-- CONTACT -->
 ## Contact
 
