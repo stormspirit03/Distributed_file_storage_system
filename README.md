@@ -29,7 +29,7 @@
   
   </a>
 
-  <h2 align="center">Distributed File storage system</h2
+  <h1 align="center">Distributed File storage system</h1
 
   <p align="center">
     A highly scalable , available and durable storage solution!
@@ -45,25 +45,14 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary >Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about">About</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-  <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#flow">Flow</a></li>
+    <li><a href="#user-api-details">User-api details</a></li>
+    <li><a href="#sequence_diagram">Sequence_diagram </a></li>
+    <li><a href="#installation">Installation</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -92,7 +81,7 @@ In architecture point of view the primary goal of this system is to streamline d
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Flow:
+## Flow
 1) Users are authenticated through the User Service. 
 2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the frontend to the appropriate Storage Server based on the current load. 
 3) The frontend then directly uploads the file to the assigned Storage Server. 
@@ -100,7 +89,7 @@ In architecture point of view the primary goal of this system is to streamline d
 5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
 Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
 
-### Built With
+## Built With
 
 |                           |                           |                           |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -120,8 +109,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </head>
 <body>
 
-<h2>USER API Details</h2>
-
+<h2 id="user-api-details">User-API Details</h2>
 
 <table >
     <tr>
@@ -408,7 +396,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </html>
 
 
-## Sequence diagram 
+## Sequence_diagram
 <a href="https://drive.google.com/file/d/1G3ViS_Al7HYg2Qsg1ajoU1aDROXGa0CI/view?usp=sharing" target="_blank">API Sequence Diagram</a> Dont shy away from zooming it.
 
 
