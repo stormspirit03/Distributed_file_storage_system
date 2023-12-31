@@ -408,22 +408,11 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </html>
 
 
-<!-- GETTING STARTED -->
-## Getting Started
+## Sequence diagram 
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-#### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+## Installation
+### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 1. Create a Dockerfile on the same level as the 'src' directory.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
 2. Create a custom network for your project. Ensure all microservices, including databases, are on the same network for communication.
 3. Ensure all requirements are mentioned correctly. <br>
@@ -451,31 +440,18 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 
-#### For Git
-1. Clone the repo
+### For Git
+1. Clone the repo.
    ```sh
    git clone https://github.com/stormspirit03/Distributed_file_storage_system
    ```
-2. Install NPM packages
+2. Install NPM packages.
    ```sh
    npm install
    ```
-3. Run all services in separate terminal
+3. Run all services in a separate terminal.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 
 <!-- CONTACT -->
