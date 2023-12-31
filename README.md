@@ -452,7 +452,7 @@ I have shared the Postman collection. Just import it inside Postman and you are 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/raviraj-gardi/)](https://www.linkedin.com/in/raviraj-gardi/) <br>
 
-Mail me at Raviraj03.py@gmail.com ( I respond the mails )
+Mail me at Raviraj03.py@gmail.com ( I respond to the emails)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -461,7 +461,7 @@ Mail me at Raviraj03.py@gmail.com ( I respond the mails )
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thanks to Dhaval Trivedi for his valueable feedback and guidance.  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
+Thanks to Dhaval Trivedi for his valuable feedback and guidance.  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
 .  <br> <br>
 Thanks to Vedant Rathore for his timely support and guidance. 
 
