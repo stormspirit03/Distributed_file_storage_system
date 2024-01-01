@@ -403,7 +403,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 <br><br>
 ## Installation
 ### Using Docker    [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-
+( This uses running docker images one by one. I am learning about Docker Compose and will update once I successfully do it. Any help is welcomed :P )
 
 
 #### 1. Pull Docker Images ( All the images are publicly available )
