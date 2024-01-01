@@ -63,9 +63,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About 
-The high level functionality of system is to be able to manage folders, store and download large size files, manage version control explicitly and file sharing.
+This system is designed to be able to store and download large-size files, manage folders, manage version control explicitly, and file sharing.
 
-In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers. <br><br>
+From an architecture point of view, the primary goal of this system is to streamline durable and scalable file storage, and access-controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. The system is kept decoupled using a central queue and can be scaled horizontally just by adding more storage servers. <br><br>
 
 <p align="center">
   <img src="https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921" alt="Distributed storage system drawio (2)">
@@ -84,8 +84,8 @@ In architecture point of view the primary goal of this system is to streamline d
 
 ## Flow
 1) Users are authenticated through the User Service. 
-2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the frontend to the appropriate Storage Server based on the current load. 
-3) The frontend then directly uploads the file to the assigned Storage Server. 
+2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the front end to the appropriate Storage Server based on the current load. 
+3) The front end then directly uploads the file to the assigned Storage Server. 
 4) The files are replicated synchronously across the servers for higher durability. 
 5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
 Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
