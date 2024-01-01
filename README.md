@@ -90,6 +90,23 @@ From an architecture point of view, the primary goal of this system is to stream
 5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
 Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
 <br><br>
+
+## The File
+<pre>{
+  1. filename
+  2. prefix
+  3. userId
+  4. hash
+  5. versionId
+  6. version
+  7. path
+  8. type
+  9. size
+  10. service
+  11. access
+  12. sharedAccessIds
+  13. encoded-path
+}</pre>
 ## Built With
 
 |                           |                           |                           |
