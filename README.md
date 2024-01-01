@@ -52,6 +52,8 @@
     <li><a href="#flow">Flow</a></li>
     <li><a href="#user-api-details">User-api details</a></li>
     <li><a href="#sequence_diagram">Sequence_diagram </a></li>
+    <li><a href="#the-file">The File </a></li>
+    <li><a href="#load-balancer">Load Balancer </a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#postman_collection">Postman_collection</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -107,6 +109,24 @@ Additionally, read operations are performed on the replicas. Since replicas are 
   12. sharedAccessIds
   13. encoded-path
 }</pre>
+
+## Load balancer
+ 1.  Determines the best database service to use based on the responses from data storage services.
+ 2.  Factors considered include whether the services are free and the total payload of each service.
+ 3.  If both services are not free, it chooses the one with the lower total payload.
+ 4.  If one service is free and the other is not, it chooses the free service.
+ 5.  If both services are free or if there is an error, it randomly selects one of the services.
+
+####  * Sentry middleware to calculate payload at Storage service.
+  I called it sentry, as it watches the incoming requests. This is done at each storage service end.
+
+####  * Flow
+1. The function checks if the request is for an upload or download endpoint by comparing the request method and path.
+2. If the request is for an upload or download endpoint, the stats object is updated to indicate that the server is busy and the total payload and incoming requests are incremented.
+3. The function attaches an error event listener to the request object. If an error occurs during the request, the stats object is updated to indicate that the server is free, and the total payload and incoming requests are decremented.
+4. The function attaches a finish event listener to the response object. When the response is finished, the stats object is updated to indicate that the server is free, and the total payload and incoming requests are decremented.
+5. The function calls the next function to pass control to the next middleware in the stack.
+<br><br>
 ## Built With
 
 |                           |                           |                           |
