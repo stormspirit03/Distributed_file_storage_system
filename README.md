@@ -406,9 +406,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 
 
 
-### Docker Setup for Distributed Storage System
-
-#### Pull Docker Images ( All the images are publicly available )
+#### 1. Pull Docker Images ( All the images are publicly available )
 
 ```bash
 docker pull dokdokr/distributed-storage-system:mongo-6
@@ -417,19 +415,13 @@ docker pull dokdokr/distributed-storage-system:meta_service
 docker pull dokdokr/distributed-storage-system:db_service1
 docker pull dokdokr/distributed-storage-system:db_service2
 ```
-#### Create a Custom Network ( must )
+#### 2. Create a Custom Network ( must )
 To ensure that all microservices, including databases, are on the same network for communication.
 ```bash
 docker network create my-custom-network
 ```
-#### Kindly use these ports for the respective services to leverage the  given Postman collection and sample env files.
- <code>27017 </code>for mongo <br>
- <code>8000 </code>for user_service <br> 
- <code>9100 </code>for user_service1 <br>
- <code>9200 </code>for user_servie2 <br>
- <code>10000 </code>for meta_service <br>
 
-## Run Docker Services
+#### 3. Run Docker Services
 Run the Docker services one by one. Make sure to start MongoDB first and then the remaining services in any order.
 
 ```bash
@@ -450,6 +442,13 @@ docker run -d --network=my-custom-network --name db_service2 -p 9200:9200 dokdok
 
 ```
 Now use the given Postman collection to hit the request and start using it. ✔
+
+#### Tip: Kindly use these ports for the respective services to leverage the  given Postman collection and sample env files.
+ <code>27017 </code>for mongo <br>
+ <code>8000 </code>for user_service <br> 
+ <code>9100 </code>for user_service1 <br>
+ <code>9200 </code>for user_servie2 <br>
+ <code>10000 </code>for meta_service <br>
 
 ### Using Local server
 1. Clone the repo.
