@@ -413,7 +413,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 3. Ensure all requirements are mentioned correctly. <br>
    Build the Docker image using the following command:
 ```sh
-   docker build -t meta-service /D:/dev/capstone/meta_service
+   docker build -t meta-service <address>
    ```
 
 4. Run the container using the following command:
