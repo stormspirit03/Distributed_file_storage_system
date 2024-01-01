@@ -425,7 +425,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
     docker run -d --network=my-custom-network --name user_service -p 8000:8000 user_service
     docker run -d --network=my-custom-network --name db_service1 -p 9100:9100 db_service1
     docker run -d --network=my-custom-network --name db_service2 -p 9200:9200 db_service2
-    docker run -d --network=my-custom-network --name my-mongodb-6x -p 9100:9100 mongo:6   
+    docker run -d --network=my-custom-network --name my-mongodb-6x -p 27017:27017 mongo:6   
   ```
 5. To know the IP address, use the following command:
 ```sh
