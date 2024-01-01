@@ -404,42 +404,52 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 ## Installation
 ### Using Docker    [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
-0. Clone the repo.
-   ```sh
-   git clone https://github.com/stormspirit03/Distributed_file_storage_system
-   ```
-1. Create a Dockerfile on the same level as the 'src' directory of each service.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
-2. Create a custom network for your project. Ensure all microservices, including databases, are on the same network for communication.
-3. Ensure all requirements are mentioned correctly. <br>
-   Build the Docker image using the following command:
-```sh
-   docker build -t meta-service <address>
-   ```
 
-4. Run the container using the following command:
-```sh
-   docker run -d --network=my-custom-network --name meta_service -p 10000:10000 meta_service
-   ```
-   Repeat this process for each service. To use the given pre-built Postman collection and provided sample env files use below ports.
-```sh
-    docker run -d --network=my-custom-network --name user_service -p 8000:8000 user_service
-    docker run -d --network=my-custom-network --name db_service1 -p 9100:9100 db_service1
-    docker run -d --network=my-custom-network --name db_service2 -p 9200:9200 db_service2
-    docker run -d --network=my-custom-network --name my-mongodb-6x -p 27017:27017 mongo:6   
-  ```
-5. To know the IP address, use the following command:
-```sh
-   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' meta-service
-   ```
-6. To stop the container, use the command:
-```sh
-   docker stop container-name
-   ```
-7. To remove the container, use the command:
-```sh
-   docker rm container-name
-   ```
 
+### Docker Setup for Distributed Storage System
+
+#### Pull Docker Images ( All the images are publicly available )
+
+Before running the services, pull the required Docker images from Docker Hub.
+```bash
+docker pull dokdokr/distributed-storage-system:mongo-6
+docker pull dokdokr/distributed-storage-system:user_service
+docker pull dokdokr/distributed-storage-system:meta_service
+docker pull dokdokr/distributed-storage-system:db_service1
+docker pull dokdokr/distributed-storage-system:db_service2
+```
+#### Create a Custom Network ( must )
+Create a custom Docker network for your project. Ensure that all microservices, including databases, are on the same network for communication.
+```bash
+docker network create my-custom-network
+```
+#### Kindly use these ports for the respective services.
+ <code>27017 </code>for mongo <br>
+ <code>8000 </code>for user_service <br> 
+ <code>9100 </code>for user_service1 <br>
+ <code>9200 </code>for user_servie2 <br>
+ <code>10000 </code>for meta_service <br>
+
+## Run Docker Services
+Run the Docker services one by one. Make sure to start MongoDB first and then the remaining services in any order.
+
+```bash
+# Run MongoDB
+docker run -d --network=my-custom-network --name my-mongodb-6x -p 27017:27017 dokdokr/distributed-storage-system:mongo-6
+
+# Run user_service
+docker run -d --network=my-custom-network --name user_service -p 8000:8000 dokdokr/distributed-storage-system:user_service
+
+# Run meta_service
+docker run -d --network=my-custom-network --name meta_service -p 10000:10000 dokdokr/distributed-storage-system:meta_service
+
+# Run db_service1
+docker run -d --network=my-custom-network --name db_service1 -p 9100:9100 dokdokr/distributed-storage-system:db_service1
+
+# Run db_service2
+docker run -d --network=my-custom-network --name db_service2 -p 9200:9200 dokdokr/distributed-storage-system:db_service2
+
+```
 
 ### Using Local server
 1. Clone the repo.
