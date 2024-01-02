@@ -111,7 +111,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 }
 </pre>
 * A file is uniquely identified using <code>hash</code> and <code>versionId</code>. 
-* A <code>hash</code> is a combination of <code>filename</code>, <code>prefix</code>, and <code>userId</code> i.e. which file? in which folder? of which user? 
+* File <code>hash</code> is a combination of <code>filename</code>, <code>prefix</code>, and <code>userId</code> i.e. which file? in which folder? of which user? 
 * <code>hash</code> is enough in itself, however <code>versionId</code> enables to store multiple versions of the same file.
 
 ## Load balancer
