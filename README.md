@@ -122,7 +122,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
  5.  If both services are free or if there is an error, it randomly selects one of the services.
 
 ####  * Sentry middleware to calculate payload at Storage service.
-  I called it sentry, as it watches the incoming requests. This is done at each storage service end.
+  I call it sentry, as it watches the incoming requests. This is done at each storage service end.
 
 ####  * Flow
 1. The function checks if the request is for an upload or download endpoint by comparing the request method and path.
