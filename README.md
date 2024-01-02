@@ -108,7 +108,11 @@ Additionally, read operations are performed on the replicas. Since replicas are 
   11. access
   12. sharedAccessIds
   13. encoded-path
-}</pre>
+}
+</pre>
+* A file is uniquely identified using <code>hash</code> and <code>versionId</code>. 
+* A <code>hash</code> is a combination of <code>filename</code>, <code>prefix</code>, and <code>userId</code> i.e. which file? in which folder? of which user? 
+* <code>hash</code> is enough in itself, however <code>versionId</code> enables to store multiple versions of the same file.
 
 ## Load balancer
  1.  Determines the best database service to use based on the responses from data storage services.
