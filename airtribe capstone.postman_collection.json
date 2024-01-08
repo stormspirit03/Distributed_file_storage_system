@@ -1,0 +1,743 @@
+{
+	"info": {
+		"_postman_id": "bebf0000-3a9e-43f0-bb8e-e74925e44a84",
+		"name": "airtribe capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13282971"
+	},
+	"item": [
+		{
+			"name": "userService",
+			"item": [
+				{
+					"name": "index",
+					"item": [
+						{
+							"name": "run server1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000",
+									"host": [
+										"localhost"
+									],
+									"port": "8000"
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"Raviraj Gardi\",\r\n    \"email\": \"Raviraj03@gmail25.com\",\r\n    \"password\": \"12345678\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"// Set the 'token' environment variable with the accessToken value\r",
+									"pm.environment.set('token', jsonData.accessToken);\r",
+									"\r",
+									"// Log the token for verification (you can remove this line in production)\r",
+									"console.log('Token set:', pm.environment.get('token'));\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"Raviraj03@gmail23.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "meta_service",
+			"item": [
+				{
+					"name": "save metadata",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\r\n    \"prefix\": \"//parent//user//\",\r\n    \"userId\": \"123456\",\r\n    \"path\": \"D:\\\\dev\\\\capstone\\\\db_service2\\\\z_database\\\\raviraj-Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\r\n    \"type\": \".exe\",\r\n    \"size_in_mb\": 57.43,\r\n    \"access\": \"public\",\r\n    \"version\": \"current\",\r\n    \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:10000/file/save-metadata",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"save-metadata"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "save metadata",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\r\n    \"prefix\": \"//parent//user//\",\r\n    \"userId\": \"123456\",\r\n    \"path\": \"D:\\\\dev\\\\capstone\\\\db_service2\\\\z_database\\\\raviraj-Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\r\n    \"type\": \".exe\",\r\n    \"size_in_mb\": 57.43,\r\n    \"access\": \"public\",\r\n    \"version\": \"current\",\r\n    \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9004/file/save-metadata",
+									"host": [
+										"localhost"
+									],
+									"port": "9004",
+									"path": [
+										"file",
+										"save-metadata"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "get all user files",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmF2aXJhaiBHYXJkaSIsImVtYWlsIjoicmF2aXJhajAzQGdtYWlsMjQuY29tIiwiaWQiOiI2NTZlYmI5MmM2NjQwODZmNDNhOTAxZGMiLCJkYlNlcnZpY2VOdW1iZXIiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAyNDQ4OTQ4LCJleHAiOjE3MDM0NDg5NDd9.T5uvQ_s0uOl9THQTJAkErsyb0gz5v2_2khPMc6IofZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10000/file/all/:userId",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"all",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9004/file/all/:userId",
+									"host": [
+										"localhost"
+									],
+									"port": "9004",
+									"path": [
+										"file",
+										"all",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "12345"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3138"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c42-dMX4ZBZjvVMFf4ULwJ2TvqYJR24\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 20:11:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"//parent//user//\": [\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 57.43,\n            \"url\": \"http://localhost:9002/uploads/Cracking_the_Coding_Interview_189_Programming_Questions_and_Solutions.pdf\"\n        },\n        {\n            \"filename\": \"img-v39mcE4ABJnUNL5bpsChvgAf.png\",\n            \"type\": \".png\",\n            \"size_in_mb\": 0.75,\n            \"url\": \"http://localhost:9002/uploads/img-v39mcE4ABJnUNL5bpsChvgAf.png\"\n        }\n    ],\n    \"//parent//user//a//\": [\n        {\n            \"filename\": \"Sale_325_24-10-2023.pdf\",\n            \"type\": \".pdf\",\n            \"size_in_mb\": 0.13,\n            \"url\": \"http://localhost:9002/uploads/Sale_325_24-10-2023.pdf\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get all files type wise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10000/file/by-type/:userId",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"by-type",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "storage usage by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10000/file/storage-usage/:userId",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"storage-usage",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "load-balancer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{meta-x-api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:10000/loadbalancer/service-url",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"loadbalancer",
+								"service-url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check-file-access",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:10000/file/check-access/:hash",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"check-access",
+								":hash"
+							],
+							"variable": [
+								{
+									"key": "hash",
+									"value": "03ae7c169dab113cd9c5591c03180dc2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get file-versions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10000/file/all-versions/:hash",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"all-versions",
+								":hash"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "1703180140267",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "hash",
+									"value": "03ae7c169dab113cd9c5591c03180dc2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set current version",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:10000/file/set-current/:hash/:versionId",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"file",
+								"set-current",
+								":hash",
+								":versionId"
+							],
+							"variable": [
+								{
+									"key": "hash",
+									"value": "03ae7c169dab113cd9c5591c03180dc2"
+								},
+								{
+									"key": "versionId",
+									"value": "1703180140267"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "db_service2",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-file-size",
+								"value": "614743040",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "this is file",
+									"type": "file",
+									"src": "/C:/Users/User/OneDrive/Pictures/507760bfb6e8149bcd040baf88b6b894.jpg"
+								},
+								{
+									"key": "prefix",
+									"value": "//parent//user//b//",
+									"type": "text"
+								},
+								{
+									"key": "access",
+									"value": "public",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "version",
+									"value": "other",
+									"type": "text"
+								},
+								{
+									"key": "sharedAccessIds",
+									"value": "[]",
+									"type": "text"
+								},
+								{
+									"key": "service",
+									"value": "9200",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "12346",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9200/file/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/file/download/:filepath/:filehash/:versionId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"file",
+								"download",
+								":filepath",
+								":filehash",
+								":versionId"
+							],
+							"variable": [
+								{
+									"key": "filepath",
+									"value": "%2FD%3A%2Fdev%2Fcapstone%2Fdb_service2%2Fz_database%2F1703883106131-507760bfb6e8149bcd040baf88b6b894.jpg"
+								},
+								{
+									"key": "filehash",
+									"value": "0ccfec98ebffe1cc07191468d610fd48"
+								},
+								{
+									"key": "versionId",
+									"value": "1703883106134"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "db_service1",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-file-size",
+								"value": "614743040",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "this is file",
+									"type": "file",
+									"src": "/C:/Users/User/OneDrive/Pictures/8177118.webp"
+								},
+								{
+									"key": "prefix",
+									"value": "//parent//user//a//",
+									"type": "text"
+								},
+								{
+									"key": "access",
+									"value": "shared",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "version",
+									"value": "current",
+									"type": "text"
+								},
+								{
+									"key": "sharedAccessIds",
+									"value": "[\"656e92c664086f43a901dc\",\"12345\"]",
+									"type": "text"
+								},
+								{
+									"key": "service",
+									"value": "9200",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "12346",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9100/file/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "9100",
+							"path": [
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9100/file/download/:filepath/:filehash/:versionId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9100",
+							"path": [
+								"file",
+								"download",
+								":filepath",
+								":filehash",
+								":versionId"
+							],
+							"variable": [
+								{
+									"key": "filepath",
+									"value": "%2FD%3A%2Fdev%2Fcapstone%2Fdb_service1%2Fz_database%2F1703880328053-8177118.webp"
+								},
+								{
+									"key": "filehash",
+									"value": "2459b5846c4ad6d15c0ddbef1c0fad05"
+								},
+								{
+									"key": "versionId",
+									"value": "1703880328131"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

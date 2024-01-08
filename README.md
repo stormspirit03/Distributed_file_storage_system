@@ -29,12 +29,11 @@
   
   </a>
 
-  <h2 align="center">Distributed File storage system</h2
+  <h1 align="center">Distributed File storage system</h1
 
   <p align="center">
-    A highly scalable , available and durable storage solution!
+    A durable, available, and highly scalable storage solution!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
   
@@ -45,25 +44,17 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary >Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about">About</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-  <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#flow">Flow</a></li>
+    <li><a href="#user-api-details">User-api details</a></li>
+    <li><a href="#sequence_diagram">Sequence_diagram </a></li>
+    <li><a href="#the-file">The File </a></li>
+    <li><a href="#load-balancer">Load Balancer </a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#postman_collection">Postman_collection</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -73,15 +64,15 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About 
-The high level functionality of system is to be able to manage folders, store and download large size files, manage version control explicitly and file sharing.
+This system is designed to be able to store and download large-size files, manage folders, manage version control explicitly, and file sharing.
 
-In architecture point of view the primary goal of this system is to streamline durable and scalable file storage, access controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. System is kept decoupled using central queue and can be scaled horizontally just by adding more storage servers. <br><br>
+From an architecture point of view, the primary goal of this system is to streamline durable and scalable file storage, and access-controlled file sharing, All on top of "flat file storage " by leveraging the file meta-data for logical separation. The system is kept decoupled using a central queue and can be scaled horizontally just by adding more storage servers. <br><br>
 
 <p align="center">
   <img src="https://github.com/stormspirit03/Distributed_file_storage_system/assets/53505985/7f4559ed-0a88-4a58-8ece-9519a1ac9921" alt="Distributed storage system drawio (2)">
 </p>
 
-
+<br><br>
 ## Components
 1) <b>User Service:</b> This is responsible for user authentication.<br>
 2) <b>Meta Server/Load Balancer:</b> This server stores file metadata and also acts as a load balancer.<br>
@@ -92,15 +83,54 @@ In architecture point of view the primary goal of this system is to streamline d
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Flow:
+## Flow
 1) Users are authenticated through the User Service. 
-2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the frontend to the appropriate Storage Server based on the current load. 
-3) The frontend then directly uploads the file to the assigned Storage Server. 
+2) Once authenticated, the Meta Server, acting as a Load Balancer, directs the front end to the appropriate Storage Server based on the current load. 
+3) The front end then directly uploads the file to the assigned Storage Server. 
 4) The files are replicated synchronously across the servers for higher durability. 
 5) Finally, the file metadata is stored in the Meta Server via the Central Queue, ensuring decoupling and enhanced performance. <br>
 Additionally, read operations are performed on the replicas. Since replicas are generated synchronously to ensure real-time availability and read operations are non-conflicting, this approach further enhances the efficiency and reliability of the system.
+<br><br>
 
-### Built With
+## The File
+<pre>{
+  1. filename
+  2. prefix
+  3. userId
+  4. hash
+  5. versionId
+  6. version
+  7. path
+  8. type
+  9. size
+  10. service
+  11. access
+  12. sharedAccessIds
+  13. encoded-path
+}
+</pre>
+* A file is uniquely identified using <code>hash</code> and <code>versionId</code>. 
+* File <code>hash</code> is a combination of <code>filename</code>, <code>prefix</code>, and <code>userId</code> i.e. which file? in which folder? of which user? 
+* <code>hash</code> is enough in itself, however <code>versionId</code> enables to store multiple versions of the same file.
+
+## Load balancer
+ 1.  Determines the best database service to use based on the responses from data storage services.
+ 2.  Factors considered include whether the services are free and the total payload of each service.
+ 3.  If both services are not free, it chooses the one with the lower total payload.
+ 4.  If one service is free and the other is not, it chooses the free service.
+ 5.  If both services are free or if there is an error, it randomly selects one of the services.
+
+####  * Sentry middleware to calculate payload at Storage service.
+  I call it sentry, as it watches the incoming requests. This is done at each storage service end.
+
+####  * Flow
+1. The function checks if the request is for an upload or download endpoint by comparing the request method and path.
+2. If the request is for an upload or download endpoint, the stats object is updated to indicate that the server is busy and the total payload and incoming requests are incremented.
+3. The function attaches an error event listener to the request object. If an error occurs during the request, the stats object is updated to indicate that the server is free, and the total payload and incoming requests are decremented.
+4. The function attaches a finish event listener to the response object. When the response is finished, the stats object is updated to indicate that the server is free, and the total payload and incoming requests are decremented.
+5. The function calls the next function to pass control to the next middleware in the stack.
+<br><br>
+## Built With
 
 |                           |                           |                           |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -120,8 +150,7 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </head>
 <body>
 
-<h2>USER API Details</h2>
-
+<h2 id="user-api-details">User-API Details</h2>
 
 <table >
     <tr>
@@ -407,83 +436,83 @@ Additionally, read operations are performed on the replicas. Since replicas are 
 </body>
 </html>
 
+<br><br>
+## Sequence_diagram
+<a href="https://drive.google.com/file/d/1G3ViS_Al7HYg2Qsg1ajoU1aDROXGa0CI/view?usp=sharing" target="_blank">API Sequence Diagram</a> Dont shy away from zooming it.
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-#### For Docker images   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-1. Create a Dockerfile on the same level as the 'src' directory.  [Sample Dockerfile](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/sample%20docker%20file.txt)
-2. Create a custom network for your project. Ensure all microservices, including databases, are on the same network for communication.
-3. Ensure all requirements are mentioned correctly.
-Build the Docker image using the following command:
-```sh
-   docker build -t meta-service /D:/dev/capstone/meta_service
-   ```
-where the first part is the name, and the second part is the absolute address.
-4.Run the container using the following command:
-```sh
-   docker run -d --network=my-custom-network --name meta-service -p 10000:10000 meta-service
-   ```
-where '--name' is the name of the container. Make sure to forward the port if you want to use it locally.
-5. To know the IP address, use the following command:
-```sh
-   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' meta-service
-   ```
-6. To stop the container, use the command:
-```sh
-   docker stop container-name
-   ```
-7. To remove the container, use the command:
-```sh
-   docker rm container-name
-   ```
+<br><br>
+## Installation
+### Using Docker    [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+( This uses running docker images one by one. I am learning about Docker Compose and will update once I successfully do it. Any help is welcomed :P )
 
 
-#### For Git
-1. Clone the repo
+#### 1. Pull Docker Images ( All the images are publicly available )
+
+```bash
+docker pull dokdokr/distributed-storage-system:mongo-6
+docker pull dokdokr/distributed-storage-system:user_service
+docker pull dokdokr/distributed-storage-system:meta_service
+docker pull dokdokr/distributed-storage-system:db_service1
+docker pull dokdokr/distributed-storage-system:db_service2
+```
+#### 2. Create a Custom Network ( must )
+To ensure that all microservices, including databases, are on the same network for communication.
+```bash
+docker network create my-custom-network
+```
+
+#### 3. Run Docker Services
+Run the Docker services one by one. Make sure to start MongoDB first and then the remaining services in any order.
+
+```bash
+# Run MongoDB
+docker run -d --network=my-custom-network --name my-mongodb-6x -p 27017:27017 dokdokr/distributed-storage-system:mongo-6
+
+# Run user_service
+docker run -d --network=my-custom-network --name user_service -p 8000:8000 dokdokr/distributed-storage-system:user_service
+
+# Run meta_service
+docker run -d --network=my-custom-network --name meta_service -p 10000:10000 dokdokr/distributed-storage-system:meta_service
+
+# Run db_service1
+docker run -d --network=my-custom-network --name db_service1 -p 9100:9100 dokdokr/distributed-storage-system:db_service1
+
+# Run db_service2
+docker run -d --network=my-custom-network --name db_service2 -p 9200:9200 dokdokr/distributed-storage-system:db_service2
+
+```
+Now use the given Postman collection to hit the request and start using it. ✔
+
+#### Tip: Kindly use these ports for the respective services to leverage the  given Postman collection and sample env files.
+ <code>27017 </code>for mongo <br>
+ <code>8000 </code>for user_service <br> 
+ <code>9100 </code>for user_service1 <br>
+ <code>9200 </code>for user_servie2 <br>
+ <code>10000 </code>for meta_service <br>
+
+### Using Local server
+1. Clone the repo.
    ```sh
    git clone https://github.com/stormspirit03/Distributed_file_storage_system
    ```
-2. Install NPM packages
+2. Install NPM packages.
    ```sh
    npm install
    ```
-3. Run all services in separate terminal
+3. Run all services in a separate terminal.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
+## Postman_collection
+[![Postman Collection](https://img.shields.io/badge/Postman-Download-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/stormspirit03/Distributed_file_storage_system/blob/main/airtribe%20capstone.postman_collection.json)
+<br>
+I have shared the Postman collection. Just import it inside Postman and you are good to go.
 <!-- CONTACT -->
 ## Contact
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/raviraj-gardi/)](https://www.linkedin.com/in/raviraj-gardi/) <br>
 
-Mail me at Raviraj03.py@gmail.com ( I respond the mails )
+Mail me at Raviraj03.py@gmail.com ( I respond to the emails)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -492,7 +521,7 @@ Mail me at Raviraj03.py@gmail.com ( I respond the mails )
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thanks to Dhaval Trivedi for his valueable feedback and guidance  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
+Thanks to Dhaval Trivedi for his valuable feedback and guidance.  <br>  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dhaval-trivedi/)](https://www.linkedin.com/in/dhaval-trivedi/)
 .  <br> <br>
 Thanks to Vedant Rathore for his timely support and guidance. 
 
