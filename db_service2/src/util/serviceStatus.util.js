@@ -4,6 +4,16 @@ let stats = {
   free: true
 };
 
+/**
+ * Middleware function that acts as a sentry in a Node.js application.
+ * It checks if the incoming request is for an upload or download endpoint and updates the `stats` object accordingly.
+ * It also handles errors and updates the `stats` object when the request ends.
+ *
+ * @param {object} req - The request object containing information about the incoming request.
+ * @param {object} res - The response object used to send the response back to the client.
+ * @param {function} next - The next middleware function in the application's middleware stack.
+ * @returns {void}
+ */
 function sentry(req, res, next) {
   let time = Date.now();
   // Check if the request is for an upload or download endpoint
@@ -18,7 +28,6 @@ function sentry(req, res, next) {
     console.log(' starting stats: ', stats);
     // Extract the 'x-file-size' header from the request
 
-    // Update stats when the request ends (successfully or with an error)
     // Update stats when the request ends (successfully or with an error)
     req.on('error', (error) => {
       stats.free = true;
